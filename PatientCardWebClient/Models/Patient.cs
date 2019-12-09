@@ -14,5 +14,10 @@ namespace PatientCardWebClient.Models
         public string City { get; set; }
         public int House { get; set; }
         public int Flat { get; set; }
+        public ICollection<VisitLog> VisitLogs { get; set; }
+        public Patient()
+        {
+            VisitLogs = new List<VisitLog>();
+        }
     }
 }
