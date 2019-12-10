@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<p>
+
+    @using (Html.BeginForm("List", "VisitLog", FormMethod.Post))
+    {
+        <div class="form-group">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label>Введите фамилию, имя, отчество</label>
+                    <input type="text" class="form-control" name="fullname">
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Фильтрация" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</p>

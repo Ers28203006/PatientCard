@@ -11,10 +11,16 @@ namespace PatientCardWebClient.Models
         public string Fullname { get; set; }
         public int? SpetiolistId { get; set; }
         public Spetialist Spetialist { get; set; }
-        public ICollection<VisitLog> VisitLogs { get; set; }
+
+        public virtual ICollection<VisitLog> VisitLogs { get; set; }
         public Doctor()
         {
             VisitLogs = new List<VisitLog>();
+        }
+
+        public override string ToString()
+        {
+            return $"{Fullname}";
         }
     }
 }

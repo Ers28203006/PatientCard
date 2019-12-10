@@ -22,8 +22,8 @@
         </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-                <label>Специалист</label>
-                <select class="form-control form-control-lg" name="spetialistTitle">
+                <label class = "control-label col-md-2" >Специалист</label>
+                <select class="form-control" name="spetialistTitle">
                     @foreach (var s in ViewBag.Specialists)
                     {
                         <option>@s.Title</option>

@@ -9,6 +9,8 @@ namespace PatientCardWebClient.Controllers
 {
     public class PatientController : Controller
     {
+        public static Patient Patient { get; set;} = new Patient();
+        PatientCardModel db = new PatientCardModel();
         // GET: Patient
         public ActionResult Index()
         {
@@ -22,7 +24,10 @@ namespace PatientCardWebClient.Controllers
         [HttpPost]
         public ActionResult Create( Patient patient)
         {
-            return View();
+            db.Patients.Add(patient);
+            db.SaveChanges();
+            Patient = patient;
+            return RedirectToAction("Create", "VisitLog");
         }
     }
 }

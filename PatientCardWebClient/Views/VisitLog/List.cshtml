@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PatientCardWebClient.Models.VisitLog>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Вернуться к заполнению журнала", "Create", "Patient")
+</p>
+<p>
+    @Html.ActionLink("Фильтрация по дате посещений", "Filter")
+</p>
+<p>
+    @Html.ActionLink("Поиск пациента", "Search")
+</p>
+
+    <table class="table">
+        <tr>
+            <th>
+                <strong>Дата посещения</strong>
+            </th>
+            <th>
+                <strong>Доктор</strong>
+            </th>
+            <th>
+                <strong>Диагноз</strong>
+            </th>
+            <th>
+                <strong>Жалобы</strong>
+            </th>
+            <th>Пациент</th>
+        </tr>
+
+        @foreach (var l in ViewBag.Logs)
+        {
+            <tr>
+                <td>
+                    @l.Date
+                </td>
+                <td>
+                    @foreach (var d in ViewBag.Doctors)
+                    {
+                        if (l.DoctorId == d.Id)
+                        {
+                            @d;
+                            break;
+                        }
+                    }
+
+                </td>
+                <td>
+                    @l.Diagnosis
+
+                </td>
+                <td>
+                    @l.Plaint
+
+                </td>
+                <td>
+                    @foreach (var p in ViewBag.Patients)
+                    {
+                        if (l.PatientId == p.Id)
+                        {
+                            @p;
+                            break;
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>

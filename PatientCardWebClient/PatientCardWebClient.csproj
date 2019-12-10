@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\VisitLogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +143,14 @@
     <Compile Include="Migrations\201912091244266_fieldVisitsPatients.cs" />
     <Compile Include="Migrations\201912091244266_fieldVisitsPatients.designer.cs">
       <DependentUpon>201912091244266_fieldVisitsPatients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912100455499_aded field Street in class Patient.cs" />
+    <Compile Include="Migrations\201912100455499_aded field Street in class Patient.designer.cs">
+      <DependentUpon>201912100455499_aded field Street in class Patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912101032004_aded lazi loading.cs" />
+    <Compile Include="Migrations\201912101032004_aded lazi loading.designer.cs">
+      <DependentUpon>201912101032004_aded lazi loading.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -190,6 +199,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Doctor\Create.cshtml" />
     <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\VisitLog\Create.cshtml" />
+    <Content Include="Views\VisitLog\List.cshtml" />
+    <Content Include="Views\VisitLog\Filter.cshtml" />
+    <Content Include="Views\VisitLog\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -213,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912091244266_fieldVisitsPatients.resx">
       <DependentUpon>201912091244266_fieldVisitsPatients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912100455499_aded field Street in class Patient.resx">
+      <DependentUpon>201912100455499_aded field Street in class Patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101032004_aded lazi loading.resx">
+      <DependentUpon>201912101032004_aded lazi loading.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
