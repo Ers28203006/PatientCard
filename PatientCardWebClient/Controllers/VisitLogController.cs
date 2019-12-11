@@ -10,11 +10,9 @@ namespace PatientCardWebClient.Controllers
     public class VisitLogController : Controller
     {
         PatientCardModel db = new PatientCardModel();
-        // GET: VisitLog
-        public ActionResult Index()
-        {
-            return View();
-        }
+        List<VisitLog> logs = new List<VisitLog>();
+        List<Doctor> doctors = new List<Doctor>();
+        List<Patient> patients = new List<Patient>();
 
         public ActionResult Create()
         {
@@ -40,9 +38,8 @@ namespace PatientCardWebClient.Controllers
                 db.VisitLogs.Add(visitLog);
                 db.SaveChanges();
             }
-            var logs = new List<VisitLog>();
-            var doctors = db.Doctors.ToList();
-            var patients = db.Patients.ToList();
+            doctors = db.Doctors.ToList();
+            patients = db.Patients.ToList();
             foreach (var l in db.VisitLogs)
                 logs.Add(l);
             ViewBag.Logs = logs;
@@ -51,44 +48,81 @@ namespace PatientCardWebClient.Controllers
             return View("List");
         }
 
-
         public ActionResult List()
         {
-            var logs = new List<VisitLog>();
-            foreach (var log in db.VisitLogs)
-                logs.Add(log);
-            ViewBag.Logs = logs;
             return View();
         }
-        [HttpPost]
-        public ActionResult List(DateTime startDate, DateTime endDate)
-        {
-            var logs = new List<VisitLog>();
-            foreach (var d in db.VisitLogs)
-            {
-                if (startDate<=d.Date && endDate>=d.Date)
-                {
-                    logs.Add(d);
-                    ViewBag.Logs = logs;
-                }
-            }
-            return View();
-        }
-        [HttpPost]
-        public ActionResult List(string fullname)
-        {
 
-            return View();
+        public ActionResult FullList()
+        {
+            logs.Clear();
+            doctors.Clear();
+            patients.Clear();
+            var visitLogs = db.VisitLogs.ToList();
+            foreach (var d in visitLogs)
+            {
+                    doctors.Add(d.Doctor);
+                    patients.Add(d.Patient);
+                    logs.Add(d);
+            }
+            ViewBag.Doctors = doctors;
+            ViewBag.Patients = patients;
+            ViewBag.Logs = logs;
+            return View("List");
         }
         public ActionResult Filter()
         {
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Filter(DateTime startDate, DateTime endDate)
+        {
+            logs.Clear();
+            doctors.Clear();
+            patients.Clear();
+
+            var visitLogs = db.VisitLogs.ToList();
+            foreach (var d in visitLogs)
+            {
+                if (startDate <= d.Date && endDate >= d.Date)
+                {
+                    doctors.Add(d.Doctor);
+                    patients.Add(d.Patient);
+                    logs.Add(d);
+                }
+            }
+            ViewBag.Doctors = doctors;
+            ViewBag.Patients = patients;
+            ViewBag.Logs = logs;
+            return View("List");
         }
 
         public ActionResult Search()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string fullname)
+        {
+            logs.Clear();
+            doctors.Clear();
+            patients.Clear();
+            var visitLogs = db.VisitLogs.ToList();
+            foreach (var d in visitLogs)
+            {
+                if (fullname == d.Patient.Fullname)
+                {
+                    doctors.Add(d.Doctor);
+                    patients.Add(d.Patient);
+                    logs.Add(d);
+                }
+            }
+            ViewBag.Doctors = doctors;
+            ViewBag.Patients = patients;
+            ViewBag.Logs = logs;
+            return View("List");
         }
     }
 }
